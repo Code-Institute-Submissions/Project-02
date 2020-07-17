@@ -4,7 +4,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="crossorigin=""/>
@@ -19,23 +18,19 @@
     <!-- Map Start -->
     <div id="map"></div>
     <!-- Toggle Start -->
-    <div class="container-fluid d-flex p-2  bg-success">
-        <!-- First Postal Code -->
-        <div class="input-group input-group-sm m-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Your Postal Code</span>
-            </div>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    <div class="container-fluid d-flex p-2  bg-success d-flex justify-content-center" id= "toggler">
+        <div class="row p-5">
+        <!-- First Row -->
+			<div class="input-group mb-3 col-md">
+				<input type="number" class="form-control" placeholder="Your 6- digit Postal Code Number only" aria-label="your postal code" aria-describedby="button-addon2">
+			</div>
+        <!-- Second Row -->
+			<div class="input-group mb-3 col-md">
+				<input type="number" class="form-control" placeholder="Your friend's 6- digit Postal Code Number only" aria-label="your friend's postal code" aria-describedby="button-addon2">
+				<div class="input-group-append"></div>
+			</div>
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
         </div>
-
-        <!-- Second Postal Code -->
-        <div class="input-group input-group-sm m-2">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Your Friend's Postal Code</span>
-            </div>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-        </div>
-        <button type="button" class="btn btn-primary">Primary</button>
     </div>
 
     <!-- Optional JavaScript -->
