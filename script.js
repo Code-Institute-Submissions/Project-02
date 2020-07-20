@@ -25,8 +25,30 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(map)
 
 
+$(function() {
+    // Global input
+    let input1 = $("#postal1").val()
+    let input2 = $("#postal2").val()
 
-// When user key in two params
-$("#generate").click(function() {
-    L.marker(singapore).addTo(map);
+    // When user key in two params
+    $("#generate").click(function() {
+            let marker1 = {
+            params = {
+                client_id: CLIENT_ID,
+                client_secret: CLIENT_SECRET,
+                v: "20200716",
+                ll: searchOrigin.join(", "), 
+                query: input1,
+                offset: 0,
+                limit: 1
+            }
+        }
+    
+    axios
+      .get("https://api.foursquare.com/v2/venues/explore", params)
+      .then(function(response){
+          let 
+
+      })
     });
+})
