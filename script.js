@@ -1,7 +1,7 @@
 //client ID and the client Secret
 const CLIENT_ID = "KNFI1FV1IHR5VB0AS00HIYMECUTITHFHY1RKBNZDWUWCY0BY";
 const CLIENT_SECRET = "DYS3XTXRYTA3FAGNLFY03RAIETOVWMSSN5CV4CFRRRX44S1B";
-const baseURL = "https://api.foursquare.com/v2/"
+const baseURL = "https://api.foursquare.com/v2/venues/VENUE_ID"
 
 // state variable
 // This is the amount of suggestions within a 5km radus
@@ -38,15 +38,14 @@ $(function() {
                 client_id: CLIENT_ID,
                 client_secret: CLIENT_SECRET,
                 v: "20200716",
-                ll: searchOrigin.join(", "), 
+                ll: location.join(),
                 query: input1.val(),
                 offset: 0,
                 limit: 1
                 }
             }
     
-    axios.get("https://api.foursquare.com/v2/venues/explore", searchResult1).then(function(response){
-          let location = venue.location;
+    axios.get(baseURL, searchResult1).then(function(response){
           let marker = L.marker([location.lat, location.lng]);
           marker.addTo(postalLayer);
       })
