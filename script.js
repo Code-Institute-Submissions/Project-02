@@ -27,18 +27,18 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 $(function() {
     // Global input
-    let input1 = $("#postal1").val()
-    let input2 = $("#postal2").val()
+    let input1 = $("#postal1")
+    let input2 = $("#postal2")
 
     // When user key in two params
     $("#generate").click(function() {
-            let marker1 = {
+            let searchResult1 = {
             params = {
                 client_id: CLIENT_ID,
                 client_secret: CLIENT_SECRET,
                 v: "20200716",
                 ll: searchOrigin.join(", "), 
-                query: input1,
+                query: searchResult1.val(),
                 offset: 0,
                 limit: 1
             }
@@ -47,7 +47,9 @@ $(function() {
     axios
       .get("https://api.foursquare.com/v2/venues/explore", params)
       .then(function(response){
-          let 
+          let location = r.venue.location;
+          let marker = L.marker([location.lat, location.lng]);
+          marker.addTo(map);
 
       })
     });
