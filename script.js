@@ -33,19 +33,17 @@ $(function() {
     // When user key in two params
     $("#generate").click(function() {
             let searchResult1 = {
-            params = {
                 client_id: CLIENT_ID,
                 client_secret: CLIENT_SECRET,
                 v: "20200716",
                 ll: searchOrigin.join(", "), 
-                query: searchResult1.val(),
+                query: input1.val(),
                 offset: 0,
                 limit: 1
             }
-        }
     
     axios
-      .get("https://api.foursquare.com/v2/venues/explore", params)
+      .get("https://api.foursquare.com/v2/venues/explore", searchResult1)
       .then(function(response){
           let location = r.venue.location;
           let marker = L.marker([location.lat, location.lng]);
