@@ -15,6 +15,8 @@ let searchOrigin = [1.370462, 103.810777];
 let singapore = [1.370462, 103.810777]; // Singapore latlng
 let map = L.map("map").setView(singapore, 13);
 
+
+
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 25,
@@ -24,11 +26,12 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
 }).addTo(map)
 
-
 $(function() {
     // Global input
     let input1 = $("#postal1")
     let input2 = $("#postal2")
+    let postalLayer = L.layerGroup();
+    map.addLayer(postalLayer);
 
     // When user key in two params
     $("#generate").click(function() {
@@ -47,8 +50,7 @@ $(function() {
       .then(function(response){
           let location = r.venue.location;
           let marker = L.marker([location.lat, location.lng]);
-          marker.addTo(map);
-
+          marker.addTo(postalLayer);
       })
     });
 })
