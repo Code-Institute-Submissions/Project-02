@@ -4,8 +4,6 @@ const CLIENT_SECRET = "DYS3XTXRYTA3FAGNLFY03RAIETOVWMSSN5CV4CFRRRX44S1B";
 const baseURL = "https://api.foursquare.com/v2/"
 
 // state variable
-// This is global state for the two location keyed queried in initially 
-let inputLocation = 0;
 // This is the amount of suggestions within a 5km radus
 let suggestions = 0;
 // Search origin before keying in inputs
@@ -36,6 +34,7 @@ $(function() {
     // When user key in two params
     $("#generate").click(function() {
             let searchResult1 = {
+                params: {
                 client_id: CLIENT_ID,
                 client_secret: CLIENT_SECRET,
                 v: "20200716",
@@ -43,12 +42,11 @@ $(function() {
                 query: input1.val(),
                 offset: 0,
                 limit: 1
+                }
             }
     
-    axios
-      .get("https://api.foursquare.com/v2/venues/explore", searchResult1)
-      .then(function(response){
-          let location = r.venue.location;
+    axios.get("https://api.foursquare.com/v2/venues/explore", searchResult1).then(function(response){
+          let location = venue.location;
           let marker = L.marker([location.lat, location.lng]);
           marker.addTo(postalLayer);
       })
