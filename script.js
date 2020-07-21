@@ -34,8 +34,8 @@ $('#generate').click(function(){
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
         v:"20200721",
-        ll: singapore.join(","),
-        query: searchTerms1,
+        ll: singapore.join(","), 
+        query: searchTerms1, //how do i query this for both input fields?
         offset: 0,
         limit: 1,
         }
@@ -71,5 +71,4 @@ $('#generate').click(function(){
         ] 
         let polyline = L.polyline(latlngs,{color:'red'}).addTo(map);
         map.fitBounds(polyline.getBounds());
-
 })
