@@ -24,15 +24,35 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 $('#generate').click(function(){
 
-    let searchTerms = $("#postal1").val();
+    // Control input 
+    let searchTerms1 = $("#postal1").val();
+    let searchTerms2 = $("#postal2").val();
 
+    // Search 1 
     axios.get(searchURL,{
     params : {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
         v:"20200721",
         ll: singapore.join(","),
-        query: searchTerms,
+        query: searchTerms1,
+        offset: 0,
+        limit: 1,
+        }
+    }).then(function(response){
+        let location1 = response.data.response.venues[0].location;
+        let marker = L.marker([location1.lat, location1.lng]);
+        marker.addTo(map);
+    })
+
+    // Search 2
+    axios.get(searchURL,{
+    params : {
+        client_id: CLIENT_ID,
+        client_secret: CLIENT_SECRET,
+        v:"20200721",
+        ll: singapore.join(","),
+        query: searchTerms2,
         offset: 0,
         limit: 1,
         }
