@@ -22,21 +22,23 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
 }).addTo(map);
 
-    $('#generate').click(function(){
-    
-        let searchTerms = $("#postal1").val();
+$('#generate').click(function(){
 
-        axios.get(searchURL,{
-        params : {
-            client_id: CLIENT_ID,
-            client_secret: CLIENT_SECRET,
-            v:"20200721",
-            ll: singapore.join(","),
-            query: searchTerms,
-            offset: 0,
-            limit: 1,
-            }
-        }).then(function(response){
-            console.log(response.data);
-        })
+    let searchTerms = $("#postal1").val();
+
+    axios.get(searchURL,{
+    params : {
+        client_id: CLIENT_ID,
+        client_secret: CLIENT_SECRET,
+        v:"20200721",
+        ll: singapore.join(","),
+        query: searchTerms,
+        offset: 0,
+        limit: 1,
+        }
+    }).then(function(response){
+        let location1 = response.data.response.venues[0].location;
+        let marker = L.marker([location1.lat, location1.lng]);
+        marker.addTo(map);
     })
+})
