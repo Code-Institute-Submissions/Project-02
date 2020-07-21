@@ -41,8 +41,9 @@ $('#generate').click(function(){
         }
     }).then(function(response){
         let location1 = response.data.response.venues[0].location;
-        let marker = L.marker([location1.lat, location1.lng]);
-        marker.addTo(map);
+        let position1 = [location1.lat, location1.lng];
+        let marker1 = L.marker(position1);
+        marker1.addTo(map);
     })
 
     // Search 2
@@ -57,8 +58,18 @@ $('#generate').click(function(){
         limit: 1,
         }
     }).then(function(response){
-        let location1 = response.data.response.venues[0].location;
-        let marker = L.marker([location1.lat, location1.lng]);
-        marker.addTo(map);
+        let location2 = response.data.response.venues[0].location;
+        let position2 = [location2.lat, location2.lng];
+        let marker2= L.marker(position2);
+        marker2.addTo(map);
     })
+
+    // GetPolyline using leaflet
+        let latlngs = [
+            [1.367668,103.892325],
+            [1.337807,103.892321],
+        ] 
+        let polyline = L.polyline(latlngs,{color:'red'}).addTo(map);
+        map.fitBounds(polyline.getBounds());
+
 })
