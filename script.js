@@ -27,16 +27,16 @@ $('#generate').click(function(){
     // Control input 
     let searchTerms1 = $("#postal1").val();
     let searchTerms2 = $("#postal2").val();
-    let arrayTerms = [searchTerms1,searchTerms2]
 
     // Axios function below
+    // Search Marker 1
     axios.get(searchURL,{
     params : {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
         v:"20200721",
         ll: singapore.join(","), 
-        query: arrayTerms, 
+        query: searchTerms1, 
         offset: 0,
         limit: 1,
         }
@@ -44,7 +44,19 @@ $('#generate').click(function(){
         console.log(response.data);
     })
 
-
+    axios.get(searchURL, {
+        params: {
+            client_id: CLIENT_ID,
+            client_secret: CLIENT_SECRET,
+            v: "20200721",
+            ll: singapore.join(","),
+            query: searchTerms1,
+            offset: 0,
+            limit: 1,
+        }
+    }).then(function (response) {
+        console.log(response.data);
+    })
         // // GetPolyline using leaflet
         //     let latlngs = [
         //         [1.367668,103.892325],
