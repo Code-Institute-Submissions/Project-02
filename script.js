@@ -27,48 +27,34 @@ $('#generate').click(function(){
     // Control input 
     let searchTerms1 = $("#postal1").val();
     let searchTerms2 = $("#postal2").val();
+    let arrayTerms = [searchTerms1,searchTerms2]
 
-    // Search 1 
+ // Axios function below
+
+ for (let p in arrayTerms) {
     axios.get(searchURL,{
     params : {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
         v:"20200721",
         ll: singapore.join(","), 
-        query: searchTerms1, //how do i query this for both input fields?
+        query: p, 
         offset: 0,
-        limit: 1,
+        limit: 2,
         }
     }).then(function(response){
-        let location1 = response.data.response.venues[0].location;
-        let position1 = [location1.lat, location1.lng];
-        let marker1 = L.marker(position1);
-        marker1.addTo(map);
+        let location = response.data.response.venues[0].location;
+        let position = [location.lat, location.lng];
+        let marker = L.marker(position);
+        marker.addTo(map);
     })
+}
 
-    // Search 2
-    axios.get(searchURL,{
-    params : {
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
-        v:"20200721",
-        ll: singapore.join(","),
-        query: searchTerms2,
-        offset: 0,
-        limit: 1,
-        }
-    }).then(function(response){
-        let location2 = response.data.response.venues[0].location;
-        let position2 = [location2.lat, location2.lng];
-        let marker2= L.marker(position2);
-        marker2.addTo(map);
-    })
-
-    // GetPolyline using leaflet
-        let latlngs = [
-            [1.367668,103.892325],
-            [1.337807,103.892321],
-        ] 
-        let polyline = L.polyline(latlngs,{color:'red'}).addTo(map);
-        map.fitBounds(polyline.getBounds());
+    // // GetPolyline using leaflet
+    //     let latlngs = [
+    //         [1.367668,103.892325],
+    //         [1.337807,103.892321],
+    //     ] 
+    //     let polyline = L.polyline(latlngs,{color:'red'}).addTo(map);
+    //     map.fitBounds(polyline.getBounds());
 })
