@@ -29,32 +29,27 @@ $('#generate').click(function(){
     let searchTerms2 = $("#postal2").val();
     let arrayTerms = [searchTerms1,searchTerms2]
 
- // Axios function below
-
- for (let p in arrayTerms) {
+    // Axios function below
     axios.get(searchURL,{
     params : {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
         v:"20200721",
         ll: singapore.join(","), 
-        query: p, 
+        query: arrayTerms, 
         offset: 0,
-        limit: 2,
+        limit: 1,
         }
     }).then(function(response){
-        let location = response.data.response.venues[0].location;
-        let position = [location.lat, location.lng];
-        let marker = L.marker(position);
-        marker.addTo(map);
+        console.log(response.data);
     })
-}
 
-    // // GetPolyline using leaflet
-    //     let latlngs = [
-    //         [1.367668,103.892325],
-    //         [1.337807,103.892321],
-    //     ] 
-    //     let polyline = L.polyline(latlngs,{color:'red'}).addTo(map);
-    //     map.fitBounds(polyline.getBounds());
+
+        // // GetPolyline using leaflet
+        //     let latlngs = [
+        //         [1.367668,103.892325],
+        //         [1.337807,103.892321],
+        //     ] 
+        //     let polyline = L.polyline(latlngs,{color:'red'}).addTo(map);
+        //     map.fitBounds(polyline.getBounds());
 })
