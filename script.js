@@ -2,6 +2,7 @@
 const CLIENT_ID = "KNFI1FV1IHR5VB0AS00HIYMECUTITHFHY1RKBNZDWUWCY0BY";
 const CLIENT_SECRET = "DYS3XTXRYTA3FAGNLFY03RAIETOVWMSSN5CV4CFRRRX44S1B";
 const searchURL = "https://api.foursquare.com/v2/venues/search";
+const suggestionURL = "https://api.foursquare.com/v2/venues/explore";
 
 // state variable
 // This is the amount of suggestions within a 5km radus
@@ -83,6 +84,22 @@ $('#generate').click(function(){
                 centerMarker.addTo(markerLayer);
                 // Zoom in onto query
                 map.fitBounds(polyline.getBounds());
-        });
+
+                axios.get(suggestionURL, {
+                    params: {
+                        client_id: CLIENT_ID,
+                        client_secret: CLIENT_SECRET,
+                        v: "20200721",
+                        ll: singapore.join(","),
+                        query: center,
+                        radius: 5000,
+                        section: 'food',
+                        offset: 0,
+                        limit: 5,
+                    }
+                }).then(function (response) {
+                    console.log(response.data);
+                });
+            });
     });
 });
