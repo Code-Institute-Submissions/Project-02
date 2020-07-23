@@ -65,14 +65,20 @@ $('#generate').click(function(){
         let marker2 = [results.lat , results.lng];
         let displayMarker2 = L.marker(marker2)
         displayMarker2.addTo(map);
-    });
 
+        //creation of polyline 
         let latlngs = [
-            marker1,
-            marker2,
+        marker1,
+        marker2, 
         ];
 
-        console.log(latlngs);
+        let polyline = L.polyline(latlngs, {color:'blue'}).addTo(map);
+        map.fitBounds(polyline.getBounds())
+    });
+
+       
+
+
 
     })
 
