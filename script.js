@@ -76,10 +76,10 @@ $('#generate').click(function(){
                 marker1,
                 marker2, 
                 ];
-
+                
+                let center = latlngs.getCenter();
                 let polyline = L.polyline(latlngs, {color:'blue'}).addTo(map);
                 // Center marker created
-                let center = polyline.getCenter();
                 let centerMarker = L.marker(center);
                 centerMarker.addTo(markerLayer);
                 // Zoom in onto query
@@ -90,17 +90,19 @@ $('#generate').click(function(){
                         client_id: CLIENT_ID,
                         client_secret: CLIENT_SECRET,
                         v: "20200721",
-                        ll: singapore.join(","),
-                        query: center,
+                        ll: center.join(","),
                         radius: 5000,
                         section: 'food',
                         limit: 5,
                     }
                 }).then(function (response) {
-                let results = response.data.response.groups[0].items[0].venue.location.labeledLatLngs[0]
-                let suggestionMarker = [results.lat , results.lng];
-                let displayMarker3 = L.marker(suggestionMarker)
-                displayMarker3.addTo(suggestionLayer);
+                    let searchResults = response.data.response.groups[0].items;
+                        for (let r of searchResults) {
+                            let location = r.venue.location;
+                            let suggestionMarker = [location.lat , location.lng];
+                            let displayMarker3 = L.marker(suggestionMarker);
+                            displayMarker3.addTo(suggestionLayer);
+                    }
                 });
             });
     });
