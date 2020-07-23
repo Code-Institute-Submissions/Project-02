@@ -22,6 +22,10 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
 }).addTo(map);
 
+// Global variables for marker 1 and marker 2
+let marker1 = [1.348104,103.867577];
+let marker2 = [1.335061,103.881663] ;
+
 $('#generate').click(function(){
 
     // Control input 
@@ -41,27 +45,36 @@ $('#generate').click(function(){
         limit: 1,
         }
     }).then(function(response){
-        console.log(response.data);
-    })
-
-    axios.get(searchURL, {
+        let results = response.data.response.venues[0].location;
+        let marker1 = L.marker([results.lat , results.lng]);
+        marker1.addTo(map);
+        // axios second marker since it is event driven
+        axios.get(searchURL, {
         params: {
             client_id: CLIENT_ID,
             client_secret: CLIENT_SECRET,
             v: "20200721",
             ll: singapore.join(","),
-            query: searchTerms1,
+            query: searchTerms2,
             offset: 0,
             limit: 1,
         }
     }).then(function (response) {
-        console.log(response.data);
+        let results = response.data.response.venues[0].location;
+        let marker2 = L.marker([results.lat , results.lng]);
+        marker2.addTo(map);
     })
-        // // GetPolyline using leaflet
-        //     let latlngs = [
-        //         [1.367668,103.892325],
-        //         [1.337807,103.892321],
-        //     ] 
-        //     let polyline = L.polyline(latlngs,{color:'red'}).addTo(map);
-        //     map.fitBounds(polyline.getBounds());
+
+
+    // .then(function(response) {
+    //         // GetPolyline using leaflet
+    //         let latlngs = [
+    //             marker1,
+    //             marker2,
+    //         ] 
+    //         let polyline = L.polyline(latlngs,{color:'red'}).addTo(map);
+    //         map.fitBounds(polyline.getBounds());
+
+    })
+
 })
