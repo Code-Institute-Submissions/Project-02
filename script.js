@@ -94,11 +94,13 @@ $('#generate').click(function(){
                         query: center,
                         radius: 5000,
                         section: 'food',
-                        offset: 0,
                         limit: 5,
                     }
                 }).then(function (response) {
-                    console.log(response.data);
+                let results = response.data.response.groups[0].items[0].venue.location.labeledLatLngs[0]
+                let suggestionMarker = [results.lat , results.lng];
+                let displayMarker3 = L.marker(suggestionMarker)
+                displayMarker3.addTo(suggestionLayer);
                 });
             });
     });
