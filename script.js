@@ -73,9 +73,11 @@ $('#generate').click(function(){
                 ];
 
                 let polyline = L.polyline(latlngs, {color:'blue'}).addTo(map);
+                // Center marker created
                 let center = polyline.getCenter();
                 let centerMarker = L.marker(center);
                 centerMarker.addTo(map);
+                // Zoom in onto query
                 map.fitBounds(polyline.getBounds());
         });
     });
