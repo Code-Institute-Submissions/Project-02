@@ -25,12 +25,16 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 // Global variables for marker 1 and marker 2
 let marker1 = [1.348104,103.867577];
 let marker2 = [1.335061,103.881663];
+let markerLayer = L.layerGroup();
+let suggestionLayer = L.layerGroup();
+map.addLayer(markerLayer);
+map.addLayer(suggestionLayer);
 
 $('#generate').click(function(){
-
     // Control input 
     let searchTerms1 = $("#postal1").val();
     let searchTerms2 = $("#postal2").val();
+
 
     // Axios function below
     // Search Marker 1
@@ -48,7 +52,7 @@ $('#generate').click(function(){
             let results = response.data.response.venues[0].location;
             let marker1 = [results.lat , results.lng];
             let displayMarker1 = L.marker(marker1);
-            displayMarker1.addTo(map);
+            displayMarker1.addTo(markerLayer);
             // axios second marker since it is event driven
             axios.get(searchURL, {
             params: {
@@ -64,7 +68,7 @@ $('#generate').click(function(){
                 let results = response.data.response.venues[0].location;
                 let marker2 = [results.lat , results.lng];
                 let displayMarker2 = L.marker(marker2)
-                displayMarker2.addTo(map);
+                displayMarker2.addTo(markerLayer);
 
                 //creation of polyline 
                 let latlngs = [
@@ -76,7 +80,7 @@ $('#generate').click(function(){
                 // Center marker created
                 let center = polyline.getCenter();
                 let centerMarker = L.marker(center);
-                centerMarker.addTo(map);
+                centerMarker.addTo(markerLayer);
                 // Zoom in onto query
                 map.fitBounds(polyline.getBounds());
         });
