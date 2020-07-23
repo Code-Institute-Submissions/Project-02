@@ -44,42 +44,39 @@ $('#generate').click(function(){
         offset: 0,
         limit: 1,
         }
-    }).then(function(response){
-        let results = response.data.response.venues[0].location;
-        let marker1 = [results.lat , results.lng];
-        let displayMarker1 = L.marker(marker1);
-        displayMarker1.addTo(map);
-        // axios second marker since it is event driven
-        axios.get(searchURL, {
-        params: {
-            client_id: CLIENT_ID,
-            client_secret: CLIENT_SECRET,
-            v: "20200721",
-            ll: singapore.join(","),
-            query: searchTerms2,
-            offset: 0,
-            limit: 1,
-        }
-    }).then(function (response) {
-        let results = response.data.response.venues[0].location;
-        let marker2 = [results.lat , results.lng];
-        let displayMarker2 = L.marker(marker2)
-        displayMarker2.addTo(map);
+        }).then(function(response){
+            let results = response.data.response.venues[0].location;
+            let marker1 = [results.lat , results.lng];
+            let displayMarker1 = L.marker(marker1);
+            displayMarker1.addTo(map);
+            // axios second marker since it is event driven
+            axios.get(searchURL, {
+            params: {
+                client_id: CLIENT_ID,
+                client_secret: CLIENT_SECRET,
+                v: "20200721",
+                ll: singapore.join(","),
+                query: searchTerms2,
+                offset: 0,
+                limit: 1,
+            }
+            }).then(function (response) {
+                let results = response.data.response.venues[0].location;
+                let marker2 = [results.lat , results.lng];
+                let displayMarker2 = L.marker(marker2)
+                displayMarker2.addTo(map);
 
-        //creation of polyline 
-        let latlngs = [
-        marker1,
-        marker2, 
-        ];
+                //creation of polyline 
+                let latlngs = [
+                marker1,
+                marker2, 
+                ];
 
-        let polyline = L.polyline(latlngs, {color:'blue'}).addTo(map);
-        map.fitBounds(polyline.getBounds())
+                let polyline = L.polyline(latlngs, {color:'blue'}).addTo(map);
+                let center = polyline.getCenter();
+                let centerMarker = L.marker(center);
+                centerMarker.addTo(map);
+                map.fitBounds(polyline.getBounds());
+        });
     });
-
-       
-
-
-
-    })
-
-})
+});
