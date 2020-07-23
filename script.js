@@ -24,7 +24,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 // Global variables for marker 1 and marker 2
 let marker1 = [1.348104,103.867577];
-let marker2 = [1.335061,103.881663] ;
+let marker2 = [1.335061,103.881663];
 
 $('#generate').click(function(){
 
@@ -46,8 +46,9 @@ $('#generate').click(function(){
         }
     }).then(function(response){
         let results = response.data.response.venues[0].location;
-        let marker1 = L.marker([results.lat , results.lng]);
-        marker1.addTo(map);
+        let marker1 = [results.lat , results.lng];
+        let displayMarker1 = L.marker(marker1);
+        displayMarker1.addTo(map);
         // axios second marker since it is event driven
         axios.get(searchURL, {
         params: {
@@ -61,19 +62,17 @@ $('#generate').click(function(){
         }
     }).then(function (response) {
         let results = response.data.response.venues[0].location;
-        let marker2 = L.marker([results.lat , results.lng]);
-        marker2.addTo(map);
-    })
+        let marker2 = [results.lat , results.lng];
+        let displayMarker2 = L.marker(marker2)
+        displayMarker2.addTo(map);
+    });
 
+        let latlngs = [
+            marker1,
+            marker2,
+        ];
 
-    // .then(function(response) {
-    //         // GetPolyline using leaflet
-    //         let latlngs = [
-    //             marker1,
-    //             marker2,
-    //         ] 
-    //         let polyline = L.polyline(latlngs,{color:'red'}).addTo(map);
-    //         map.fitBounds(polyline.getBounds());
+        console.log(latlngs);
 
     })
 
