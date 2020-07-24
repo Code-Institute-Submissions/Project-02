@@ -88,7 +88,7 @@ $('#generate').click(function(){
                         client_id: CLIENT_ID,
                         client_secret: CLIENT_SECRET,
                         v: "20200721",
-                        ll: centerArray,
+                        ll: centerArray.join(","),
                         radius: 5000,
                         section: 'food',
                         limit: 5,
