@@ -76,21 +76,19 @@ $('#generate').click(function(){
                 marker1,
                 marker2, 
                 ];
-                
-                let center = latlngs.getCenter();
+
                 let polyline = L.polyline(latlngs, {color:'blue'}).addTo(map);
                 // Center marker created
-                let centerMarker = L.marker(center);
-                centerMarker.addTo(markerLayer);
-                // Zoom in onto query
-                map.fitBounds(polyline.getBounds());
+                center = polyline.getCenter();
+                centerArray = [center.lat, center.lng];
+                console.log(centerArray),
 
                 axios.get(suggestionURL, {
                     params: {
                         client_id: CLIENT_ID,
                         client_secret: CLIENT_SECRET,
                         v: "20200721",
-                        ll: center.join(","),
+                        ll: centerArray,
                         radius: 5000,
                         section: 'food',
                         limit: 5,
