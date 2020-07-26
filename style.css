@@ -1,5 +1,5 @@
 #map {
-    height:60vh;
+    height:80vh;
 }
 
 .navbar {
@@ -9,7 +9,13 @@
     font-family: 'Cedarville Cursive', cursive!important;
     font-size: 1.5rem;
 }
+.container-fluid{
+    background-color: #E0AAAF!important;
+}
 
+body {
+    background-color: #E0AAAF!important;
+}
 @media only screen and (max-width: 600px) {
     #map {
         height:50vh;

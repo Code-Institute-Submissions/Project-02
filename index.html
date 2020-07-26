@@ -14,7 +14,7 @@
   <body>
     <!-- Navbar Start-->
         <nav class="navbar navbar-expand-lg navbar-light bg-success d-flex justify-content-center">
-            <a class="navbar-brand text-white" href="#">Love Byte</a>
+            <a class="navbar-brand mt-4 text-white" href="#">Love Byte</a>
         </nav>
     <!-- Map Start -->
     <div id="map"></div>
@@ -22,18 +22,28 @@
     <div class="container-fluid d-flex p-2  bg-success d-flex justify-content-center" id= "toggler">
         <div class="row p-5">
         <!-- First Row -->
-			<div class="input-group mb-3 col-md">
+			<div class="input-group col-md">
 				<input type="text" class="form-control" id="postal1" placeholder="Your street name" aria-label="your street name" aria-describedby="button-addon2">
 			</div>
         <!-- Second Row -->
-			<div class="input-group mb-3 col-md">
+			<div class="input-group col-md">
 				<input type="text" class="form-control"  id="postal2" placeholder="Your friend's street name" aria-label="your friend's street name" aria-describedby="button-addon2">
 				<div class="input-group-append"></div>
 			</div>
-        <button class="btn btn-outline-secondary" type="button" id="generate">Generate</button>
+        <button class="btn ml-3 btn-light" type="button" id="generate">Generate</button>
         </div>
     </div>
 
+    <!-- Results added to show various location -->
+    <section>
+        <div class="container">
+            <div class = "titletop text-white">
+                <h1>Here are some ideas for your date!</h1>
+            </div>
+            <div class = "resultbox">
+            </div>
+        </div>
+    </section>
 <!-- JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
