@@ -108,13 +108,33 @@ $('#generate').click(function(){
                         limit: 5,
                     }
                 }).then(function (response) {
+
+                    $(document).ready(function(){
+                        let createthings = document.createElement("h1");
+                        createthings.innerHTML = "Here are some ideas for your date!"
+                        $('.titletop').append(createthings)
+                    })
+
                     let searchResults = response.data.response.groups[0].items;
-                        for (let r of searchResults) {
-                            let location = r.venue.location;
-                            let suggestionMarker = [location.lat , location.lng];
-                            let displayMarker3 = L.marker(suggestionMarker);
-                            displayMarker3.addTo(suggestionLayer);
-                            map.removeLayer(polyline)
+                    for (let r of searchResults) {
+                        // Location on map
+                        let location = r.venue.location;
+                        let suggestionMarker = [location.lat , location.lng];
+                        let displayMarker3 = L.marker(suggestionMarker);
+                        displayMarker3.addTo(suggestionLayer);
+
+                        // // Information of each item & function to create list
+                        // let 
+                        // $(document).ready(function(){
+                        //     $('.displayresults').append(createthings)
+                            
+
+
+                        // })
+
+
+                        // Finally, remove the pesky polyline
+                        map.removeLayer(polyline)
                     }
                 });
             });
