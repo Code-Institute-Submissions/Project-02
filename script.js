@@ -14,14 +14,15 @@ let searchOrigin = [1.370462, 103.810777];
 let singapore = [1.370462, 103.810777]; // Singapore latlng
 let map = L.map("map").setView(singapore, 13);
 
+
 // Marker Design 
 let homeIcon = L.icon({
-    iconUrl: 'images/marker-01.png',
+    iconUrl: '../Images/marker-01.png',
 
-    iconSize:     [38, 95], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
+    iconSize: [38, 38], // size of the icon
+    shadowSize: [50, 64], // size of the shadow
+    iconAnchor: [0, 0], // point of the icon which will correspond to marker's location
+    shadowAnchor: [0, 0],  // the same for the shadow
 });
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -38,8 +39,10 @@ let marker1 = [1.348104,103.867577];
 let marker2 = [1.335061,103.881663];
 let markerLayer = L.layerGroup();
 let suggestionLayer = L.layerGroup();
+
 map.addLayer(markerLayer);
 map.addLayer(suggestionLayer);
+
 
 $('#generate').click(function(){
     // Control input 
@@ -87,7 +90,8 @@ $('#generate').click(function(){
                 marker2, 
                 ];
 
-                let polyline = L.polyline(latlngs, {color:'blue'}).addTo(map);
+                let polyline = L.polyline(latlngs).addTo(map);
+
                 // Center marker created
                 center = polyline.getCenter();
                 centerArray = [center.lat, center.lng];
@@ -110,6 +114,7 @@ $('#generate').click(function(){
                             let suggestionMarker = [location.lat , location.lng];
                             let displayMarker3 = L.marker(suggestionMarker);
                             displayMarker3.addTo(suggestionLayer);
+                            map.removeLayer(polyline)
                     }
                 });
             });
