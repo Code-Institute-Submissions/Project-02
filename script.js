@@ -14,6 +14,16 @@ let searchOrigin = [1.370462, 103.810777];
 let singapore = [1.370462, 103.810777]; // Singapore latlng
 let map = L.map("map").setView(singapore, 13);
 
+// Marker Design 
+let homeIcon = L.icon({
+    iconUrl: 'images/marker-01.png',
+
+    iconSize:     [38, 95], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+});
+
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
@@ -52,7 +62,7 @@ $('#generate').click(function(){
         }).then(function(response){
             let results = response.data.response.venues[0].location;
             let marker1 = [results.lat , results.lng];
-            let displayMarker1 = L.marker(marker1);
+            let displayMarker1 = L.marker(marker1, {icon: homeIcon});
             displayMarker1.addTo(markerLayer);
             // axios second marker since it is event driven
             axios.get(searchURL, {
@@ -68,7 +78,7 @@ $('#generate').click(function(){
             }).then(function (response) {
                 let results = response.data.response.venues[0].location;
                 let marker2 = [results.lat , results.lng];
-                let displayMarker2 = L.marker(marker2)
+                let displayMarker2 = L.marker(marker2, {icon: homeIcon})
                 displayMarker2.addTo(markerLayer);
 
                 //creation of polyline 
