@@ -116,6 +116,7 @@ $('#generate').click(function(){
                     })
 
                     let searchResults = response.data.response.groups[0].items;
+
                     for (let r of searchResults) {
                         // Location on map
                         let location = r.venue.location;
@@ -126,8 +127,17 @@ $('#generate').click(function(){
                         let displayMarker3 = L.marker(suggestionMarker); 
                         displayMarker3.bindPopup(`<h3>${locationName}</h3><p>${addressName}</p>`) 
                         displayMarker3.addTo(suggestionLayer);
-                        console.log(locationName);
                         
+                        let imageList = 'images/img'+1+'.jpg';
+                        console.log(imageList)
+                        
+
+                        // Dynamic background image content
+                        // let imageCSS = "images/" +(searchResults.+1)+".jpg"
+
+
+                        // console.log(imageCSS);
+
                         // // Information of each item & function to create list
                         let sugg = $(`
                             <div class="card mt-4" data-aos = "zoom-in">
