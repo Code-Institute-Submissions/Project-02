@@ -131,15 +131,16 @@ $('#generate').click(function(){
 
                         // // Information of each item & function to create list
                          
-                        // $(document).ready(function(){
-                        //     $('.displayresults').append(createthings)
-                            
-
-                        // })
+                        $(document).ready(function(){
+                           let cardBody = document.createElement("div");
+                           cardBody.innerHTML = `<h3>${locationName}</h3><p>${addressName}</p>`
+                           console.log(cardBody);
+                           $('.titletop').append()
+                        })
 
 
                         // // Finally, remove the pesky polyline
-                        // map.removeLayer(polyline)
+                        map.removeLayer(polyline)
                     }
                 });
             });
