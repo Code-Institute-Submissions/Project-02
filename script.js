@@ -119,22 +119,27 @@ $('#generate').click(function(){
                     for (let r of searchResults) {
                         // Location on map
                         let location = r.venue.location;
+                        let locationName = r.venue.name;
+                        let addressName = r.venue.location.address;
+
                         let suggestionMarker = [location.lat , location.lng];
-                        let displayMarker3 = L.marker(suggestionMarker);
+                        let displayMarker3 = L.marker(suggestionMarker); 
+                        displayMarker3.bindPopup(`<h3>${locationName}</h3><p>${addressName}</p>`) 
                         displayMarker3.addTo(suggestionLayer);
 
+
+
                         // // Information of each item & function to create list
-                        // let 
+                         
                         // $(document).ready(function(){
                         //     $('.displayresults').append(createthings)
                             
 
-
                         // })
 
 
-                        // Finally, remove the pesky polyline
-                        map.removeLayer(polyline)
+                        // // Finally, remove the pesky polyline
+                        // map.removeLayer(polyline)
                     }
                 });
             });
