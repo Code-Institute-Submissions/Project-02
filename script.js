@@ -7,6 +7,7 @@ const suggestionURL = "https://api.foursquare.com/v2/venues/explore";
 // state variable
 // This is the amount of suggestions within a 5km radus
 let suggestions = 0;
+let suggestionList =[];
 // Search origin before keying in inputs
 let searchOrigin = [1.370462, 103.810777]; 
 
@@ -132,10 +133,10 @@ $('#generate').click(function(){
                         // // Information of each item & function to create list
                          
                         $(document).ready(function(){
-                           let cardBody = document.createElement("div");
-                           cardBody.innerHTML = `<h3>${locationName}</h3><p>${addressName}</p>`
-                           console.log(cardBody);
-                           $('.titletop').append()
+                           let suggestionList = document.createElement("li");
+                           suggestionList.innerHTML = `<h3>${locationName}</h3><p>${addressName}</p>`
+                           console.log(suggestionList);
+                           $('.displayresults').append(suggestionList)
                         })
 
 
