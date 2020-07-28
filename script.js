@@ -13,11 +13,12 @@ let searchOrigin = [1.370462, 103.810777];
 // Map display
 let singapore = [1.370462, 103.810777]; // Singapore latlng
 let map = L.map("map").setView(singapore, 13);
-
+let locationName = ("")
+let addressName = ("")
 
 // Marker Design 
 let homeIcon = L.icon({
-    iconUrl: '../Images/marker-01.png',
+    iconUrl: '../images/marker-01.png',
 
     iconSize: [38, 38], // size of the icon
     shadowSize: [50, 64], // size of the shadow
@@ -91,11 +92,11 @@ $('#generate').click(function(){
                 ];
 
                 let polyline = L.polyline(latlngs).addTo(map);
+                map.fitBounds(polyline.getBounds());
 
                 // Center marker created
                 center = polyline.getCenter();
                 centerArray = [center.lat, center.lng];
-                console.log(centerArray),
 
                 axios.get(suggestionURL, {
                     params: {
@@ -111,7 +112,7 @@ $('#generate').click(function(){
 
                     $(document).ready(function(){
                         let createthings = document.createElement("h1");
-                        createthings.innerHTML = "Here are some ideas for your date!"
+                        createthings.innerHTML = "3 Great Ideas For You!"
                         $('.titletop').append(createthings)
                     })
                         
@@ -127,17 +128,19 @@ $('#generate').click(function(){
                         let displayMarker3 = L.marker(suggestionMarker); 
                         displayMarker3.bindPopup(`<h3>${locationName}</h3><p>${addressName}</p>`) 
                         displayMarker3.addTo(suggestionLayer);
+                        
+                        number = searchResults.indexOf(r);
+                        actual = number + 1;
 
-                        // Iteratble function number 
-                            let number = [1,2,3,4,5]
-                            randomNumber =[]
-                            // Doing random number generator here for images! 
+                        console.log()
+
                         // Information of each item & function to create list
                             let sugg = $(`
                                     <div class="card m-2 shadow-sm" style="width: 18rem;" data-aos="flip-right">
-                                        <img class="card-img-top" src="images/img-${randomNum}.jpg" alt="Experimental placeholder images">
+                                        <img class="card-img-top" src="images/img-${actual}.jpg" alt="Experimental placeholder images">
                                         <div class="card-body">
-                                            <p class="card-text">${locationName}</p>
+                                            <p class="h3">${locationName}</p>
+                                            <p class="card-text">${addressName}</p>
                                         </div>
                                         <button type="button" class="btn btn-primary">Book Now!</button>
                                     </div>
@@ -146,7 +149,7 @@ $('#generate').click(function(){
                             $('#recon').append(sugg);
 
                         // Finally, remove the pesky polyline
-                        
+
                     }
                     map.removeLayer(polyline);
                     })

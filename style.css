@@ -7,7 +7,11 @@
 }
 .navbar-brand{
     font-family: 'Cedarville Cursive', cursive!important;
-    font-size: 1.5rem;
+    font-size: 2rem;
+}
+h1{
+    font-family: 'Cedarville Cursive', cursive!important;
+    font-size: 4rem;
 }
 .container-fluid{
     background-color: #E0AAAF!important;
@@ -15,6 +19,7 @@
 
 body {
     background-color: #E0AAAF!important;
+    margin-bottom: 15vh;
 }
 
 .card-header {
