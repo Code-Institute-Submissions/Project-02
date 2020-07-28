@@ -7,7 +7,6 @@ const suggestionURL = "https://api.foursquare.com/v2/venues/explore";
 // state variable
 // This is the amount of suggestions within a 5km radus
 let suggestions = 0;
-let suggestionList =[];
 // Search origin before keying in inputs
 let searchOrigin = [1.370462, 103.810777]; 
 
@@ -127,21 +126,22 @@ $('#generate').click(function(){
                         let displayMarker3 = L.marker(suggestionMarker); 
                         displayMarker3.bindPopup(`<h3>${locationName}</h3><p>${addressName}</p>`) 
                         displayMarker3.addTo(suggestionLayer);
-
-
-
+                        console.log(locationName);
+                        
                         // // Information of each item & function to create list
-                         
-                        $(document).ready(function(){
-                           let suggestionList = document.createElement("li");
-                           suggestionList.innerHTML = `<h3>${locationName}</h3><p>${addressName}</p>`
-                           console.log(suggestionList);
-                           $('.displayresults').append(suggestionList)
-                        })
-
-
+                        let sugg = $(`
+                            <div class="card mt-4" data-aos = "zoom-in">
+                                <h5 class="card-header">${locationName}</h5>
+                                <div class="card-body">
+                                    <p class="card-text">${addressName}</p>
+                                    <a href="#" class="btn btn-primary">Make a reservation now!</a>
+                                </div>
+                            </div>
+                        `)  
+                        
+                        $('#displayresults').append(sugg);
                         // // Finally, remove the pesky polyline
-                        map.removeLayer(polyline)
+                        map.removeLayer(polyline);
                     }
                 });
             });

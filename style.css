@@ -16,6 +16,15 @@
 body {
     background-color: #E0AAAF!important;
 }
+.card{
+    border-color:none!important;
+    background-color: #fce4e6!important;
+}
+.card-header {
+    background-color: rgb(207, 118, 127)!important;
+    color: white!important;
+    border-color:none!important;
+}
 @media only screen and (max-width: 600px) {
     #map {
         height:50vh;
