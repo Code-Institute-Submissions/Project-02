@@ -105,7 +105,7 @@ $('#generate').click(function(){
                         ll: centerArray.join(","),
                         radius: 5000,
                         section: 'food',
-                        limit: 5,
+                        limit: 3,
                     }
                 }).then(function (response) {
 
@@ -114,9 +114,9 @@ $('#generate').click(function(){
                         createthings.innerHTML = "Here are some ideas for your date!"
                         $('.titletop').append(createthings)
                     })
+                        
 
                     let searchResults = response.data.response.groups[0].items;
-
                     for (let r of searchResults) {
                         // Location on map
                         let location = r.venue.location;
@@ -127,33 +127,29 @@ $('#generate').click(function(){
                         let displayMarker3 = L.marker(suggestionMarker); 
                         displayMarker3.bindPopup(`<h3>${locationName}</h3><p>${addressName}</p>`) 
                         displayMarker3.addTo(suggestionLayer);
+
+                        // Iteratble function number 
+                            let number = [1,2,3,4,5]
+                            randomNumber =[]
+                            // Doing random number generator here for images! 
+                        // Information of each item & function to create list
+                            let sugg = $(`
+                                    <div class="card m-2 shadow-sm" style="width: 18rem;" data-aos="flip-right">
+                                        <img class="card-img-top" src="images/img-${randomNum}.jpg" alt="Experimental placeholder images">
+                                        <div class="card-body">
+                                            <p class="card-text">${locationName}</p>
+                                        </div>
+                                        <button type="button" class="btn btn-primary">Book Now!</button>
+                                    </div>
+                            `)  
+
+                            $('#recon').append(sugg);
+
+                        // Finally, remove the pesky polyline
                         
-                        let imageList = 'images/img'+1+'.jpg';
-                        console.log(imageList)
-                        
-
-                        // Dynamic background image content
-                        // let imageCSS = "images/" +(searchResults.+1)+".jpg"
-
-
-                        // console.log(imageCSS);
-
-                        // // Information of each item & function to create list
-                        let sugg = $(`
-                            <div class="card mt-4" data-aos = "zoom-in">
-                                <h5 class="card-header">${locationName}</h5>
-                                <div class="card-body">
-                                    <p class="card-text">${addressName}</p>
-                                    <a href="#" class="btn btn-primary">Make a reservation now!</a>
-                                </div>
-                            </div>
-                        `)  
-                        
-                        $('#displayresults').append(sugg);
-                        // // Finally, remove the pesky polyline
-                        map.removeLayer(polyline);
                     }
-                });
+                    map.removeLayer(polyline);
+                    })
             });
     });
 });
