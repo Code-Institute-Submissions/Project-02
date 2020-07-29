@@ -132,24 +132,19 @@ $('#generate').click(function(){
                         number = searchResults.indexOf(r);
                         actual = number + 1;
 
-                        console.log()
-
                         // Information of each item & function to create list
                             let sugg = $(`
-                                    <div class="card m-2 shadow-sm" style="width: 18rem;" data-aos="flip-right">
-                                        <img class="card-img-top" src="images/img-${actual}.jpg" alt="Experimental placeholder images">
-                                        <div class="card-body">
-                                            <p class="h3">${locationName}</p>
-                                            <p class="card-text">${addressName}</p>
+                                        <div class="card m-2 shadow-sm" style="width: 18rem;" data-aos="flip-right">
+                                            <img class="card-img-top" src="images/img-${actual}.jpg" alt="Experimental placeholder images">
+                                            <div class="card-body">
+                                                <p class="h3">${locationName}</p>
+                                                <p class="card-text">${addressName}</p>
+                                            </div>
+                                            <button type="button" class="btn btn-primary">Book Now!</button>
                                         </div>
-                                        <button type="button" class="btn btn-primary">Book Now!</button>
-                                    </div>
-                            `)  
-
+                                        `)  
                             $('#recon').append(sugg);
-
                         // Finally, remove the pesky polyline
-
                     }
                     map.removeLayer(polyline);
                     })
