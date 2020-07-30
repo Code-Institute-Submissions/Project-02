@@ -44,110 +44,120 @@ let suggestionLayer = L.layerGroup();
 map.addLayer(markerLayer);
 map.addLayer(suggestionLayer);
 
+$(function() {
+    // Function to display  
+    $('#generate').click(function(){
+        // Control input 
+        let searchTerms1 = $("#postal1").val();
+        let searchTerms2 = $("#postal2").val();
 
-$('#generate').click(function(){
-    // Control input 
-    let searchTerms1 = $("#postal1").val();
-    let searchTerms2 = $("#postal2").val();
 
-
-    // Axios function below
-    // Search Marker 1
-    axios.get(searchURL,{
-    params : {
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
-        v:"20200721",
-        ll: singapore.join(","), 
-        query: searchTerms1, 
-        offset: 0,
-        limit: 1,
-        }
-        }).then(function(response){
-            let results = response.data.response.venues[0].location;
-            let marker1 = [results.lat , results.lng];
-            let displayMarker1 = L.marker(marker1, {icon: homeIcon});
-            displayMarker1.addTo(markerLayer);
-            // axios second marker since it is event driven
-            axios.get(searchURL, {
-            params: {
-                client_id: CLIENT_ID,
-                client_secret: CLIENT_SECRET,
-                v: "20200721",
-                ll: singapore.join(","),
-                query: searchTerms2,
-                offset: 0,
-                limit: 1,
+        // Axios function below
+        // Search Marker 1
+        axios.get(searchURL,{
+        params : {
+            client_id: CLIENT_ID,
+            client_secret: CLIENT_SECRET,
+            v:"20200721",
+            ll: singapore.join(","), 
+            query: searchTerms1, 
+            offset: 0,
+            limit: 1,
             }
-            }).then(function (response) {
+            }).then(function(response){
                 let results = response.data.response.venues[0].location;
-                let marker2 = [results.lat , results.lng];
-                let displayMarker2 = L.marker(marker2, {icon: homeIcon})
-                displayMarker2.addTo(markerLayer);
-
-                //creation of polyline 
-                let latlngs = [
-                marker1,
-                marker2, 
-                ];
-
-                let polyline = L.polyline(latlngs).addTo(map);
-                map.fitBounds(polyline.getBounds());
-
-                // Center marker created
-                center = polyline.getCenter();
-                centerArray = [center.lat, center.lng];
-
-                axios.get(suggestionURL, {
-                    params: {
-                        client_id: CLIENT_ID,
-                        client_secret: CLIENT_SECRET,
-                        v: "20200721",
-                        ll: centerArray.join(","),
-                        radius: 5000,
-                        section: 'food',
-                        limit: 3,
-                    }
+                let marker1 = [results.lat , results.lng];
+                let displayMarker1 = L.marker(marker1, {icon: homeIcon});
+                displayMarker1.addTo(markerLayer);
+                // axios second marker since it is event driven
+                axios.get(searchURL, {
+                params: {
+                    client_id: CLIENT_ID,
+                    client_secret: CLIENT_SECRET,
+                    v: "20200721",
+                    ll: singapore.join(","),
+                    query: searchTerms2,
+                    offset: 0,
+                    limit: 1,
+                }
                 }).then(function (response) {
+                    let results = response.data.response.venues[0].location;
+                    let marker2 = [results.lat , results.lng];
+                    let displayMarker2 = L.marker(marker2, {icon: homeIcon})
+                    displayMarker2.addTo(markerLayer);
 
-                    $(document).ready(function(){
-                        let createthings = document.createElement("h1");
-                        createthings.innerHTML = "3 Great Ideas For You!"
-                        $('.titletop').append(createthings)
-                    })
-                        
+                    //creation of polyline 
+                    let latlngs = [
+                    marker1,
+                    marker2, 
+                    ];
 
-                    let searchResults = response.data.response.groups[0].items;
-                    for (let r of searchResults) {
-                        // Location on map
-                        let location = r.venue.location;
-                        let locationName = r.venue.name;
-                        let addressName = r.venue.location.address;
+                    let polyline = L.polyline(latlngs).addTo(map);
+                    map.fitBounds(polyline.getBounds());
 
-                        let suggestionMarker = [location.lat , location.lng];
-                        let displayMarker3 = L.marker(suggestionMarker); 
-                        displayMarker3.bindPopup(`<h3>${locationName}</h3><p>${addressName}</p>`) 
-                        displayMarker3.addTo(suggestionLayer);
-                        
-                        number = searchResults.indexOf(r);
-                        actual = number + 1;
+                    // Center marker created
+                    center = polyline.getCenter();
+                    centerArray = [center.lat, center.lng];
 
-                        // Information of each item & function to create list
-                            let sugg = $(`
-                                        <div class="card m-2 shadow-sm" style="width: 18rem;" data-aos="flip-right">
-                                            <img class="card-img-top" src="images/img-${actual}.jpg" alt="Experimental placeholder images">
-                                            <div class="card-body">
-                                                <p class="h3">${locationName}</p>
-                                                <p class="card-text">${addressName}</p>
+                    axios.get(suggestionURL, {
+                        params: {
+                            client_id: CLIENT_ID,
+                            client_secret: CLIENT_SECRET,
+                            v: "20200721",
+                            ll: centerArray.join(","),
+                            radius: 5000,
+                            section: 'food',
+                            limit: 3,
+                        }
+                    }).then(function (response) {
+
+                        $(document).ready(function(){
+                            let createthings = document.createElement("h1");
+                            createthings.innerHTML = "3 Great Ideas For You!"
+                            $('.titletop').append(createthings)
+                        })
+                            
+
+                        let searchResults = response.data.response.groups[0].items;
+                        for (let r of searchResults) {
+                            // Location on map
+                            let location = r.venue.location;
+                            let locationName = r.venue.name;
+                            let addressName = r.venue.location.address;
+
+                            let suggestionMarker = [location.lat , location.lng];
+                            let displayMarker3 = L.marker(suggestionMarker); 
+                            displayMarker3.bindPopup(`<h3>${locationName}</h3><p>${addressName}</p>`) 
+                            displayMarker3.addTo(suggestionLayer);
+                            
+                            number = searchResults.indexOf(r);
+                            actual = number + 1;
+
+                            // Information of each item & function to create list
+                                let sugg = $(`
+                                            <div class="card m-2 shadow-sm" style="width: 18rem;" data-aos="flip-right">
+                                                <img class="card-img-top" src="images/img-${actual}.jpg" alt="Experimental placeholder images">
+                                                <div class="card-body">
+                                                    <p class="h3">${locationName}</p>
+                                                    <p class="card-text">${addressName}</p>
+                                                </div>
+                                                <button type="button" class="btn btn-primary">Book Now!</button>
                                             </div>
-                                            <button type="button" class="btn btn-primary">Book Now!</button>
-                                        </div>
-                                        `)  
-                            $('#recon').append(sugg);
-                        // Finally, remove the pesky polyline
-                    }
-                    map.removeLayer(polyline);
-                    })
-            });
+                                            `)  
+                                $('#recon').append(sugg);
+                            // Finally, remove the pesky polyline
+                        }
+                        map.removeLayer(polyline);
+                        })
+                });
+        });
     });
-});
+
+    // Function to clear 
+    $("#generate").click(function() {
+        suggestionLayer.clearLayers();
+        markerLayer.clearLayers();
+        $('#recon').empty()
+        $('.titletop').empty()
+    });
+})
