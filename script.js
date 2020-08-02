@@ -4,6 +4,36 @@ const CLIENT_SECRET = "DYS3XTXRYTA3FAGNLFY03RAIETOVWMSSN5CV4CFRRRX44S1B";
 const searchURL = "https://api.foursquare.com/v2/venues/search";
 const suggestionURL = "https://api.foursquare.com/v2/venues/explore";
 
+
+
+// SPA for about us page! 
+$("#about").click(function(){
+
+    $("#page-1").removeClass('show');
+    $("#page-1").addClass('hidden');
+
+    $("#page-2").removeClass('hidden');
+    $("#page-2").addClass('show')
+
+    $("#about").replaceWith(
+    '<button class="btn ml-3 btn-light" type="button" id="back">Back</button>'
+        );
+})
+
+$("#back").click(function(){
+alert("hello world");
+    // $("#page-1").removeClass('hidden');
+    // $("#page-1").addClass('show');
+
+    // $("#page-2").removeClass('show');
+    // $("#page-2").addClass('hidden');
+
+    // $("#back").replaceWith(
+    // '<button class="btn ml-3 btn-light" type="button" id="about">About</button>'
+    //     );
+})
+
+// Map design below (For functionality of application)
 // state variable
 // This is the amount of suggestions within a 5km radus
 let suggestions = 0;
@@ -140,6 +170,7 @@ $(function() {
                                                 <div class="card-body">
                                                     <p class="h3">${locationName}</p>
                                                     <p class="card-text">${addressName}</p>
+                                                    <p>★ ★ ★ ★ ★</p>
                                                 </div>
                                                 <button type="button" class="btn btn-primary">Book Now!</button>
                                             </div>
@@ -160,4 +191,8 @@ $(function() {
         $('#recon').empty()
         $('.titletop').empty()
     });
+
+
+
+
 })
