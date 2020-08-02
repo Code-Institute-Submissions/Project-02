@@ -7,20 +7,7 @@ const suggestionURL = "https://api.foursquare.com/v2/venues/explore";
 
 
 // SPA for about us page! 
-$("#about").click(function(){
-
-    $("#page-1").removeClass('show');
-    $("#page-1").addClass('hidden');
-
-    $("#page-2").removeClass('hidden');
-    $("#page-2").addClass('show')
-
-    $("#about").replaceWith(
-    '<button class="btn ml-3 btn-light" type="button" id="back">Back</button>'
-        );
-})
-
-$("#back").click(function(){
+$("#return").click(function(){
 alert("hello world");
     // $("#page-1").removeClass('hidden');
     // $("#page-1").addClass('show');
@@ -32,6 +19,21 @@ alert("hello world");
     // '<button class="btn ml-3 btn-light" type="button" id="about">About</button>'
     //     );
 })
+
+$("#about").click(function(){
+
+    $("#page-1").removeClass('show');
+    $("#page-1").addClass('hidden');
+
+    $("#page-2").removeClass('hidden');
+    $("#page-2").addClass('show')
+
+    $("#about").replaceWith(
+    '<button class="btn ml-3 btn-light" type="button" id="return">Back</button>'
+        );
+})
+
+
 
 // Map design below (For functionality of application)
 // state variable
