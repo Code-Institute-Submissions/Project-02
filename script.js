@@ -4,37 +4,6 @@ const CLIENT_SECRET = "DYS3XTXRYTA3FAGNLFY03RAIETOVWMSSN5CV4CFRRRX44S1B";
 const searchURL = "https://api.foursquare.com/v2/venues/search";
 const suggestionURL = "https://api.foursquare.com/v2/venues/explore";
 
-
-
-// SPA for about us page! 
-$("#return").click(function(){
-alert("hello world");
-    // $("#page-1").removeClass('hidden');
-    // $("#page-1").addClass('show');
-
-    // $("#page-2").removeClass('show');
-    // $("#page-2").addClass('hidden');
-
-    // $("#back").replaceWith(
-    // '<button class="btn ml-3 btn-light" type="button" id="about">About</button>'
-    //     );
-})
-
-$("#about").click(function(){
-
-    $("#page-1").removeClass('show');
-    $("#page-1").addClass('hidden');
-
-    $("#page-2").removeClass('hidden');
-    $("#page-2").addClass('show')
-
-    $("#about").replaceWith(
-    '<button class="btn ml-3 btn-light" type="button" id="return">Back</button>'
-        );
-})
-
-
-
 // Map design below (For functionality of application)
 // state variable
 // This is the amount of suggestions within a 5km radus
@@ -47,6 +16,7 @@ let singapore = [1.370462, 103.810777]; // Singapore latlng
 let map = L.map("map").setView(singapore, 13);
 let locationName = ("")
 let addressName = ("")
+
 
 // Marker Design 
 let homeIcon = L.icon({
@@ -197,4 +167,31 @@ $(function() {
 
 
 
+})
+
+// SPA for about us page! 
+$("#return").click(function(){
+alert("hello world");
+    // $("#page-1").removeClass('hidden');
+    // $("#page-1").addClass('show');
+
+    // $("#page-2").removeClass('show');
+    // $("#page-2").addClass('hidden');
+
+    // $("#back").replaceWith(
+    // '<button class="btn ml-3 btn-light" type="button" id="about">About</button>'
+    //     );
+})
+
+$("#about").click(function(){
+
+    $("#page-1").removeClass('show');
+    $("#page-1").addClass('hidden');
+
+    $("#page-2").removeClass('hidden');
+    $("#page-2").addClass('show')
+
+    $("#about").replaceWith(
+    '<button class="btn ml-3 btn-light" type="button" id="return">Back</button>'
+        );
 })

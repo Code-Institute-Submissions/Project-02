@@ -2,6 +2,13 @@
     height:80vh;
 }
 
+#emailHelp{
+    color:white!important;
+}
+
+.page-2-text{
+    color: white;
+}
 .navbar {
     background-color: #E0AAAF!important;
 }
