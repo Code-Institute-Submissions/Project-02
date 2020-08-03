@@ -163,10 +163,6 @@ $(function() {
         $('#recon').empty()
         $('.titletop').empty()
     });
-
-
-
-
 })
 
 // SPA for about us page! 
