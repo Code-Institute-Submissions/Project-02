@@ -21,7 +21,6 @@ let addressName = ("")
 // Marker Design 
 let homeIcon = L.icon({
     iconUrl: '../images/marker-01.png',
-
     iconSize: [38, 38], // size of the icon
     shadowSize: [50, 64], // size of the shadow
     iconAnchor: [0, 0], // point of the icon which will correspond to marker's location
@@ -163,18 +162,4 @@ $(function() {
         $('#recon').empty()
         $('.titletop').empty()
     });
-})
-
-// SPA for about us page! 
-$("#about").click(function(){
-
-    $("#page-1").removeClass('show');
-    $("#page-1").addClass('hidden');
-
-    $("#page-2").removeClass('hidden');
-    $("#page-2").addClass('show')
-
-    $("#about").replaceWith(
-    ''
-        );
 })
