@@ -166,19 +166,6 @@ $(function() {
 })
 
 // SPA for about us page! 
-$("#return").click(function(){
-alert("hello world");
-    // $("#page-1").removeClass('hidden');
-    // $("#page-1").addClass('show');
-
-    // $("#page-2").removeClass('show');
-    // $("#page-2").addClass('hidden');
-
-    // $("#back").replaceWith(
-    // '<button class="btn ml-3 btn-light" type="button" id="about">About</button>'
-    //     );
-})
-
 $("#about").click(function(){
 
     $("#page-1").removeClass('show');
@@ -188,6 +175,6 @@ $("#about").click(function(){
     $("#page-2").addClass('show')
 
     $("#about").replaceWith(
-    '<button class="btn ml-3 btn-light" type="button" id="return">Back</button>'
+    ''
         );
 })
