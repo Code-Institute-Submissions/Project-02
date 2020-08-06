@@ -20,7 +20,7 @@ let addressName = ("")
 
 // Marker Design 
 let homeIcon = L.icon({
-    iconUrl: '../images/marker-01.png',
+    iconUrl: './images/marker-01.png',
     iconSize: [38, 38], // size of the icon
     shadowSize: [50, 64], // size of the shadow
     iconAnchor: [0, 0], // point of the icon which will correspond to marker's location
