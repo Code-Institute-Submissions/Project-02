@@ -65,7 +65,7 @@ Features
 
 
 ## Deployment
-Live demo of project is deployed [link](https://darylkangjh.github.io/Project-02/ "here") hosted on GitHub pages. Source code is available [link](https://github.com/darylkangjh/Project-02 "here") on GitHub.
+Live demo of project is deployed [here](https://darylkangjh.github.io/Project-02/ "here") hosted on GitHub pages. Source code is available [here](https://github.com/darylkangjh/Project-02 "here") on GitHub.
 
 ## Credits
 
