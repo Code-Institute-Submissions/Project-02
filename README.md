@@ -18,6 +18,8 @@ For more information, please email daryl.kangjh@gmail.com if you would like to b
 
 ## Home Page
 
+![gif of website](./images/gif1.gif "gif of site function")
+
 #### User Goals 
 
 The page displays a map with 2 markers in the shape of hearts. This indicates the couples location when entered for input field 1 and 2. When the button is clicked to search, 3 markers will appear and show the 3 recommended eateries on the map. This will allow for a visual representation of the locations relative to where the couples stay at. The user can also click on the suggested marker to view the name of the eatery.
